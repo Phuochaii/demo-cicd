@@ -36,9 +36,35 @@ describe('AppController', () => {
     });
   });
 
-  describe('users', () => {
+  describe('get all users', () => {
     it('should return an array of users', async () => {
       expect(await appController.getUsers()).toEqual(expect.any(Array));
+    });
+  });
+
+  describe('get user by id', () => {
+    it('should return a user by id', async () => {
+      expect(await appController.getUserById(1)).toEqual({
+        id: 1,
+        name: expect.any(String),
+      });
+    });
+  });
+
+  describe('create user', () => {
+    it('should create a user', async () => {
+      expect(
+        await appController.createUser({
+          name: 'John Doe',
+          email: 'email@gmail.com',
+          password: 'password',
+        }),
+      ).toEqual({
+        id: expect.any(Number),
+        name: 'John Doe',
+        email: 'email@gmail.com',
+        password: 'password',
+      });
     });
   });
 });
