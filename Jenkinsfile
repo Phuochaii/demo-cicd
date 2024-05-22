@@ -3,8 +3,9 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                bat 'npm install' 
+                bat 'docker-compose up --build' 
             }
         }
+       
     }
 }

@@ -9,6 +9,7 @@ WORKDIR /usr/src/app
 COPY package.json ./
 RUN pnpm install
 COPY . .
+RUN pnpm test:cov
 RUN pnpm run build 
 
 # production stage
