@@ -6,6 +6,7 @@ pipeline {
                 bat 'npm install'
                 bat 'npm run build'
             }
+            //  cca
         }
         stage('Unit Testing') { 
             steps {
