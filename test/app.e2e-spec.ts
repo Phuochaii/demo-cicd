@@ -16,17 +16,21 @@ describe('AppController (e2e)', () => {
   });
 
   it('/ (GET)', () => {
-    return request(app.getHttpServer()).get('/').expect(200);
-    // .expect('Hello World!');
+    return request(app.getHttpServer())
+      .get('/')
+      .expect(200)
+      .expect('Hello World!');
   });
   it('/users (GET)', () => {
     return request(app.getHttpServer()).get('/users').expect(200);
     // .expect(expect.any(Array));
   });
-  it('/users (POST)', () => {
+  it('/user (POST)', () => {
     return request(app.getHttpServer())
       .post('/user')
       .send({ name: 'John Doe', email: 'abc@gmail.com', password: 'password' })
+      .set('Accept', 'application/json')
+      .set('Content-Type', 'application/json')
       .expect(201);
     // .expect({ id: expect.any(Number), name: 'John Doe' });
   });

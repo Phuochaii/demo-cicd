@@ -1,0 +1,48 @@
+version: '3.8'
+services:
+  demo:
+    container_name: demo
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - DB_HOST=demo-db
+      - DB_PORT=5432
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=phuochai1901
+      - DB_DATABASE=demo
+    depends_on:
+      - demo-db
+    networks:
+      - demo
+    ports:
+      - '3000:3000'
+  demo-db:
+    container_name: demo-db
+    image: postgres:latest
+    networks:
+      - demo
+    environment:
+      - POSTGRES_PASSWORD=phuochai1901
+    volumes:
+      - demo-db:/var/lib/postgresql/data
+  # pgadmin:
+  #   image: dpage/pgadmin4
+  #   restart: always
+  #   container_name: nest-pgadmin4
+  #   environment:
+  #     - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+  #     - PGADMIN_DEFAULT_PASSWORD=pgadmin4
+  #   ports:
+  #     - '5050:80'
+  #   depends_on:
+  #     - demo-db
+networks:
+  # backend:
+  # notification:
+  demo:
+  # job:
+volumes:
+  # notification-db:
+  demo-db:
+  # job-db:
