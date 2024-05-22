@@ -1,21 +1,22 @@
 pipeline {
     agent any
-
-    tools {nodejs "node"}
-
     stages {
-
-        stage('Build') {
+        stage('Build') { 
             steps {
                 bat 'npm install'
-                bat 'npm run build'
+            }
+        }
+        stage('Unit Testing') { 
+            steps {
+                bat 'npm run test:cov'
+            }
+        }
+        stage('E2E Testing') { 
+            steps {
+                bat 'npm run test:e2e'
             }
         }
 
-        stage('Test') {
-            steps {
-                bat 'npm run test'
-            }
-        }
+       
     }
 }
