@@ -8,15 +8,15 @@ pipeline {
         }
         stage('Unit Testing') { 
             steps {
-                bat 'npm test:cov'
+                bat 'npm run test:cov'
             }
         }
         stage('E2E Testing') { 
             steps {
-                bat 'npm test:e2e'
+                bat 'npm run test:e2e'
             }
         }
-        
+
        
     }
 }
