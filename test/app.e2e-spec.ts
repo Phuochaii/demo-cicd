@@ -22,8 +22,10 @@ describe('AppController (e2e)', () => {
       .expect('Hello World!');
   });
   it('/users (GET)', () => {
-    return request(app.getHttpServer()).get('/users').expect(200);
-    // .expect(expect.any(Array));
+    return request(app.getHttpServer())
+      .get('/users')
+      .expect(200)
+      .expect(expect.any(Array));
   });
   it('/user (POST)', () => {
     return request(app.getHttpServer())
