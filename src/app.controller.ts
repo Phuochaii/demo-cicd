@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -15,7 +15,7 @@ export class AppController {
     return this.appService.getUsers();
   }
   @Get('/user/:id')
-  getUserById(id: number): Promise<any> {
+  getUserById(@Param('id') id: number): Promise<any> {
     return this.appService.getUserById(id);
   }
   @Post('/user')

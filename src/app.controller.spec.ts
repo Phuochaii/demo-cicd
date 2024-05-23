@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { CreateUserDto } from './DTO/create-user.dto';
 
 describe('AppController', () => {
   let appController: AppController;
@@ -40,31 +41,47 @@ describe('AppController', () => {
     it('should return an array of users', async () => {
       expect(await appController.getUsers()).toEqual(expect.any(Array));
     });
+    it('should call the service.getUsers method', async () => {
+      expect(mockAppService.getUsers).toHaveBeenCalled();
+    });
+    it('should call the service.createUser method with the correct value', async () => {
+      expect(mockAppService.getUsers).toHaveBeenCalledWith();
+    });
   });
 
   describe('get user by id', () => {
+    const id = 1;
     it('should return a user by id', async () => {
-      expect(await appController.getUserById(1)).toEqual({
-        id: 1,
+      expect(await appController.getUserById(id)).toEqual({
+        id: id,
         name: expect.any(String),
       });
+    });
+    it('should call the service.getUserById method', async () => {
+      expect(mockAppService.getUserById).toHaveBeenCalled();
+    });
+    it('should call the service.createUser method with the correct value', async () => {
+      expect(mockAppService.getUserById).toHaveBeenCalledWith(id);
     });
   });
 
   describe('create user', () => {
+    const user: CreateUserDto = {
+      name: 'John Doe',
+      email: 'email@gmail.com',
+      password: 'password',
+    };
     it('should create a user', async () => {
-      expect(
-        await appController.createUser({
-          name: 'John Doe',
-          email: 'email@gmail.com',
-          password: 'password',
-        }),
-      ).toEqual({
+      expect(await appController.createUser(user)).toEqual({
         id: expect.any(Number),
-        name: 'John Doe',
-        email: 'email@gmail.com',
-        password: 'password',
+        ...user,
       });
+    });
+    it('should call the service.createUser method', async () => {
+      expect(mockAppService.createUser).toHaveBeenCalled();
+    });
+    it('should call the service.createUser method with the correct value', async () => {
+      expect(mockAppService.createUser).toHaveBeenCalledWith(user);
     });
   });
 });
