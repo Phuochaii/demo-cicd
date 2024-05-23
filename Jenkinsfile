@@ -16,3 +16,12 @@ pipeline {
     
     }
 }
+
+post {
+    success {
+        echo 'SUCCESS'
+    }
+    failure {
+        echo 'FAILURE'
+    }
+}
