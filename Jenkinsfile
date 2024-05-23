@@ -17,11 +17,11 @@ pipeline {
     }
 }
 
-post {
-    success {
-        echo 'SUCCESS'
-    }
-    failure {
-        echo 'FAILURE'
-    }
-}
+// post {
+//     success {
+//         echo 'SUCCESS'
+//     }
+//     failure {
+//         echo 'FAILURE'
+//     }
+// }
